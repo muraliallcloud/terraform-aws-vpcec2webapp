@@ -8,7 +8,7 @@ This Terraform module can be used to create below resources:<br/>
 > Security Groups<br/>
 > EC2 Instances<br/>
 
-
+<br/>
 **Usage Example:**
 
 ```rb
