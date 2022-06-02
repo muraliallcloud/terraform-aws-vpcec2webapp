@@ -53,7 +53,7 @@ module "vpcec2webapp" {
   linuxwebsetupscript_src = "linuxwebsetup.sh"
   linuxwebsetupscript_dest = "/tmp/linuxwebsetup.sh"
   ec2_instance_platform = "linux"
-  #ec2_instances_count = 1
+  ec2_instances_count = 1
 
 }
 ```
