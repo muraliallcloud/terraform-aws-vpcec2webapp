@@ -1,0 +1,25 @@
+<powershell>
+cd /
+mkdir MSSQL
+cd MSSQL
+#curl "https://download.microsoft.com/download/7/c/1/7c14e92e-bdcb-4f89-b7cf-93543e7112d1/SQLEXPR_x64_ENU.exe" -o "SQLExpress.exe"
+#SQLExpress.exe /q /s "C:\MSSQL"
+echo "Completed Extracting SQL Binaries" >> "C:\MSSQL\sqlinstall.log"
+#"C:\MSSQL\SQLExpress\SETUP.EXE" /Q /IACCEPTSQLSERVERLICENSETERMS /ACTION="install" /FEATURES="SQL" /INSTANCENAME="SQLEXPRESS" /SECURITYMODE=SQL /SAPWD="Crazy@123" /ADDCURRENTUSERASSQLADMIN  >> "C:\MSSQL\sqlinstall.log"
+echo "Completed SQL Install Step" >> "C:\MSSQL\sqlinstall.log"
+net user ansadmin Crazy@123 /add  >> "C:\MSSQL\sqlinstall.log"
+net localgroup administrators ansadmin /add  >> "C:\MSSQL\sqlinstall.log"
+NetSh Advfirewall set allprofiles state off  >> "C:\MSSQL\sqlinstall.log"
+#sqlcmd -S.\SQLExpress -Usa -PCrazy@123 -Q "create database bricks"
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$url = "https://raw.githubusercontent.com/jborean93/ansible-windows/master/scripts/Install-WMF3Hotfix.ps1"
+$file = "$env:temp\Install-WMF3Hotfix.ps1"
+(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
+powershell.exe -ExecutionPolicy ByPass -File $file -Verbose
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+$url = "https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1"
+$file = "$env:temp\ConfigureRemotingForAnsible.ps1"
+(New-Object -TypeName System.Net.WebClient).DownloadFile($url, $file)
+powershell.exe -ExecutionPolicy ByPass -File $file
+winrm enumerate winrm/config/Listener
+</powershell>

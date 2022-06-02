@@ -37,19 +37,19 @@ variable "azs" {
 ####################################
 
 variable "create_vpc_igw_rt_sn" {
-  description = ""
+  description = "Create option for VPC / IGW / RT / SN resources"
   type = bool
   default = null
 }
 
 variable "create_public_sg" {
-  description = ""
+  description = "Create option for public Security Group resource"
   type = bool
   default = null
 }
 
 variable "create_private_sg" {
-  description = ""
+  description = "Create option for private Security Group resource"
   type = bool
   default = null
 }
@@ -124,55 +124,55 @@ variable "ingress_private_sg_ports" {
 
 variable "linux_ami" {
   type = string
-  description = ""
+  description = "EC2 Instance Linux AMI"
   default     = null
 }
 
 variable "windows_ami" {
   type = string
-  description = ""
+  description = "EC2 Instance Windows AMI"
   default   = null
 }
 
 variable "instance_type" {
   type = string
-  description = ""
+  description = "EC2 Instance Type like linux / windows"
   default = null
 }
 
 variable "publicip" {
   type = bool
-  description = ""
+  description = "EC2 Instances to be created with publicip or not"
   default      = null
 }
 
 variable "keyname" {
   type = string
-  description = ""
+  description = "keyname to connect EC2 Instances"
   default       = null
 }
 
 variable "linuxwebsetupscript_src" {
   type = string
-  description = ""
+  description = "USER_DATA script for EC2 Linux Instance"
   default = null
 }
 
 variable "linuxwebsetupscript_dest" {
   type = string
-  description = ""
+  description = "Location in EC2 Instance where USER_DATA script to be copied"
   default = null
 }
 
 variable "create_ec2_linux" {
   type = bool
-  description = ""
+  description = "Create option for EC2 Linux Instances"
   default = null
 }
 
 variable "create_ec2_windows" {
   type = bool
-  description = ""
+  description = "Create option for EC2 Windows Instances"
   default = null
 }
 

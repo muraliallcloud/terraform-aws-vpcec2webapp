@@ -15,7 +15,7 @@ This Terraform module can be used to create below resources:<br/>
 ```rb
 module "vpcec2webapp" {
   source  = "muraliallcloud/vpcec2webapp/aws"
-  version = "0.0.2"
+  version = "~> 0.0.4"
 
   # Generic configuration
   region = "ap-south-1"
@@ -57,3 +57,5 @@ module "vpcec2webapp" {
 
 }
 ```
+
+The Scripts\files provided here are for personal testing purpose without any Warranty of any Kind.

@@ -7,11 +7,7 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
       version = "4.13.0"
-    }
-    null = {
-      source = "hashicorp/null"
-      version = "~> 3.0"
-    }        
+    }   
   }
 }
 
@@ -99,7 +95,7 @@ resource "aws_subnet" "subnet1a" {
     Name = "${local.name_conv}-sn1a"
   }
 
-  count = var.create_vpc_igw_rt_sn ? 1:0
+  count = var.create_vpc_igw_rt_sn && length(var.azs)>1 ? 1:0
 }
 
 resource "aws_subnet" "subnet2a" {
@@ -112,7 +108,7 @@ resource "aws_subnet" "subnet2a" {
     Name = "${local.name_conv}-sn2a"
   }
 
-  count = var.create_vpc_igw_rt_sn ? 1:0
+  count = var.create_vpc_igw_rt_sn && length(var.azs)>1 ? 1:0
 }
 
 resource "aws_subnet" "subnet1b" {
@@ -125,7 +121,7 @@ resource "aws_subnet" "subnet1b" {
     Name = "${local.name_conv}-sn1b"
   }
 
-  count = var.create_vpc_igw_rt_sn ? 1:0
+  count = var.create_vpc_igw_rt_sn && length(var.azs)>1 ? 1:0
 }
 
 resource "aws_subnet" "subnet2b" {
@@ -138,7 +134,7 @@ resource "aws_subnet" "subnet2b" {
     Name = "${local.name_conv}-sn2b"
   }
 
-  count = var.create_vpc_igw_rt_sn ? 1:0
+  count = var.create_vpc_igw_rt_sn && length(var.azs)>1 ? 1:0
 }
 
 ####################################
@@ -202,7 +198,7 @@ resource "aws_security_group" "public_sg" {
     Name = "${local.name_conv}-public-sg"
   }
 
-  count = var.create_public_sg ? 1:0
+  count = var.create_vpc_igw_rt_sn && var.create_public_sg ? 1:0
 }
 
 ####################################
@@ -238,7 +234,7 @@ resource "aws_security_group" "private_sg" {
     Name = "${local.name_conv}-private-sg"
   }
 
-  count = var.create_private_sg ? 1:0
+  count = var.create_vpc_igw_rt_sn && var.create_private_sg ? 1:0
 }
 
 ####################################
@@ -258,7 +254,7 @@ resource "aws_instance" "ec2_linux" {
 
   }
 
-  count = var.create_ec2_linux && var.ec2_instance_platform == "linux" ? var.ec2_instances_count : 0
+  count = var.sn_1a != null && var.create_ec2_linux && var.ec2_instance_platform == "linux" ? var.ec2_instances_count : 0
 
   #user_data = "${file("linuxwebsetup.sh")}"
 
@@ -301,7 +297,7 @@ resource "aws_instance" "ec2_windows" {
 
   }
 
-  count = var.create_ec2_linux && var.ec2_instance_platform == "windows" ? var.ec2_instances_count : 0
+  count = var.sn_2a != null && var.create_ec2_windows && var.ec2_instance_platform == "windows" ? var.ec2_instances_count : 0
 
   #user_data = "${file("windbsetup.txt")}"
 
