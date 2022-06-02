@@ -1,8 +1,15 @@
-AWS VPC SG EC2 Creation Terraform module
+**AWS - VPC / IGW / RT / SN / SG / EC2 Creations using this Terraform module**
 
-Terraform module which creates VPC SG EC2 resources on AWS.
+This Terraform module can be used to create below resources:<br/>
+VPC<br/>
+Internet Gateway<br/>
+Route Tables<br/>
+Subnets<br/>
+Security Groups<br/>
+EC2 Instances<br/>
 
-Usage Example:
+
+**Usage Example:**
 
 ```rb
 module "vpcec2webapp" {
