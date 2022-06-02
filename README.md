@@ -1,8 +1,8 @@
 AWS VPC SG EC2 Creation Terraform module
 
 Terraform module which creates VPC SG EC2 resources on AWS.
-**
-Usage Example:**
+
+Usage Example:
 
 module "vpcec2webapp" {
   source  = "muraliallcloud/vpcec2webapp/aws"
