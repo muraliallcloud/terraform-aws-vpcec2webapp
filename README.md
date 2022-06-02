@@ -1,12 +1,12 @@
 **AWS - VPC / IGW / RT / SN / SG / EC2 Creations using this Terraform module**
 
 This Terraform module can be used to create below resources:<br/>
-VPC<br/>
-Internet Gateway<br/>
-Route Tables<br/>
-Subnets<br/>
-Security Groups<br/>
-EC2 Instances<br/>
+  VPC<br/>
+  Internet Gateway<br/>
+  Route Tables<br/>
+  Subnets<br/>
+  Security Groups<br/>
+  EC2 Instances<br/>
 
 
 **Usage Example:**
