@@ -50,12 +50,17 @@ module "vpcec2webapp" {
   instance_type = "t2.micro"
   publicip      = true
   keyname       = "bookz-privatekey"
-  linuxwebsetupscript_src = "linuxwebsetup.sh"
+  linux_userdata_script = "linuxwebsetup.sh"
   linuxwebsetupscript_dest = "/tmp/linuxwebsetup.sh"
+  windows_userdata_script = "windbsetup.txt"
   ec2_instance_platform = "linux"
   ec2_instances_count = 1
 
 }
 ```
 
+**Note:**<br/>
+When using user_data parameter for EC2 Instances, make sure to create respective files in your terrform working directory.
+
+**Info:**<br/>
 The Scripts\files provided here are for personal testing purpose without any Warranty of any Kind.

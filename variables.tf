@@ -152,7 +152,7 @@ variable "keyname" {
   default       = null
 }
 
-variable "linuxwebsetupscript_src" {
+variable "linux_userdata_script" {
   type = string
   description = "USER_DATA script for EC2 Linux Instance"
   default = null
@@ -161,6 +161,12 @@ variable "linuxwebsetupscript_src" {
 variable "linuxwebsetupscript_dest" {
   type = string
   description = "Location in EC2 Instance where USER_DATA script to be copied"
+  default = null
+}
+
+variable "windows_userdata_script" {
+  type = string
+  description = "USER_DATA script for EC2 Linux Instance"
   default = null
 }
 
