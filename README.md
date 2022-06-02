@@ -2,34 +2,34 @@ AWS VPC SG EC2 Creation Terraform module
 
 Terraform module which creates VPC SG EC2 resources on AWS.
 
-Usage Example:
+Usage Example:<br/>
 
-module "vpcec2webapp" {
-  source  = "muraliallcloud/vpcec2webapp/aws"
-  version = "0.0.2"
+module "vpcec2webapp" {<br/>
+  source  = "muraliallcloud/vpcec2webapp/aws"<br/>
+  version = "0.0.2"<br/><br/>
 
-  #Generic configuration
-  region = "ap-south-1"
-  profile = "default"
-  application_name = "brickspay"
-  owners = "Infra"
-  azs = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]
+  #Generic configuration<br/>
+  region = "ap-south-1"<br/>
+  profile = "default"<br/>
+  application_name = "brickspay"<br/>
+  owners = "Infra"<br/>
+  azs = ["ap-south-1a", "ap-south-1b", "ap-south-1c"]<br/>
 
-  #Resource Creation Configuration
-  create_vpc_igw_rt_sn = true
-  create_public_sg = true
-  create_private_sg = true
-  create_ec2_linux = true
-  create_ec2_windows = false
+  #Resource Creation Configuration<br/>
+  create_vpc_igw_rt_sn = true<br/>
+  create_public_sg = true<br/>
+  create_private_sg = true<br/>
+  create_ec2_linux = true<br/>
+  create_ec2_windows = false<br/>
 
-  #VPC Configuration
-  vpc_cidr_block = "172.25.0.0/16"
-  all_cidr_block = ["0.0.0.0/0"]
-  igw_cidr_block = "0.0.0.0/0"
-  sn_1a = "172.25.1.0/28"
-  sn_2a = "172.25.2.0/28"
-  sn_1b = "172.25.3.0/28"
-  sn_2b = "172.25.4.0/28"
+  #VPC Configuration<br/>
+  vpc_cidr_block = "172.25.0.0/16"<br/>
+  all_cidr_block = ["0.0.0.0/0"]<br/>
+  igw_cidr_block = "0.0.0.0/0"<br/>
+  sn_1a = "172.25.1.0/28"<br/>
+  sn_2a = "172.25.2.0/28"<br/>
+  sn_1b = "172.25.3.0/28"<br/>
+  sn_2b = "172.25.4.0/28"<br/>
 
   #Security Group Configuration
   ingress_public_sg_ports = ["22", "443", "80", "3389"]
