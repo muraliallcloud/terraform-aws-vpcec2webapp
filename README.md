@@ -1,4 +1,4 @@
-AWS VPC SG EC2 Terraform module
+AWS VPC SG EC2 Creation Terraform module
 
 Terraform module which creates VPC SG EC2 resources on AWS.
 
