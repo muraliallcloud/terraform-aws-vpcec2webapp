@@ -256,7 +256,7 @@ resource "aws_instance" "ec2_linux" {
 
   count = var.sn_1a != null && var.create_ec2_linux && var.ec2_instance_platform == "linux" ? var.ec2_instances_count : 0
 
-  #user_data = "${file("linuxwebsetup.sh")}"
+  user_data = "${file("linuxwebsetup.sh")}"
 
 /*
   connection {
@@ -299,7 +299,7 @@ resource "aws_instance" "ec2_windows" {
 
   count = var.sn_2a != null && var.create_ec2_windows && var.ec2_instance_platform == "windows" ? var.ec2_instances_count : 0
 
-  #user_data = "${file("windbsetup.txt")}"
+  user_data = "${file("windbsetup.txt")}"
 
 }
 
