@@ -1,11 +1,7 @@
-output "Brief_Information" {
-  value = var.application_name
-}
-/*
 output "vpcname-cidrblock" {
   value = "${aws_vpc.vpc[0].tags.Name}-${aws_vpc.vpc[0].cidr_block}"
 }
-*/
+
 output "subnet1aname-cidrblock" {
   value = "${aws_subnet.subnet1a[0].tags.Name}-${aws_subnet.subnet1a[0].cidr_block}"
 }
