@@ -36,3 +36,10 @@ output "windows_public_ips" {
   value = toset([for instance in aws_instance.ec2_windows: "${instance.tags.Name}-${instance.instance_type}-${instance.subnet_id}-${instance.availability_zone}-${instance.public_ip}"])
 } 
 
+output "alb_subnets" {
+    value = toset([for alb_info in aws_lb.alb: "${alb_info.name}-${alb_info.subnets}"])
+}
+
+output "alb_securitygroups" {
+    value = toset([for alb_info in aws_lb.alb: "${alb_info.name}-${alb_info.security_groups}"])
+}
