@@ -1,3 +1,7 @@
+output "Brief_Information" {
+  value = var.application_name
+}
+
 output "vpcname-cidrblock" {
   value = "${aws_vpc.vpc[0].tags.Name}-${aws_vpc.vpc[0].cidr_block}"
 }
