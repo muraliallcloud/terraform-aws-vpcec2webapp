@@ -304,6 +304,7 @@ resource "aws_instance" "ec2_windows" {
 }
 
 
+
 ####################################
 # Application Load Balancer
 ####################################
@@ -343,7 +344,7 @@ resource "aws_lb_target_group_attachment" "alb-register" {
   target_id        = "${element(split(",", join(",", aws_instance.ec2_linux.*.id)), count.index)}"
   port             = 80
 
-  count = var.ec2_instances_count
+  count = var.ec2_instances_count>1 && var.create_alb ? var.ec2_instances_count:0
 }
 
 resource "aws_lb_listener" "alb-lisnr" {
@@ -362,5 +363,3 @@ resource "aws_lb_listener" "alb-lisnr" {
 
   count = var.ec2_instances_count>1 && var.create_alb ? 1:0
 }
-
-
