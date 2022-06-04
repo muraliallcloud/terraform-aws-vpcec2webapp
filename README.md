@@ -56,6 +56,9 @@ module "vpcec2webapp" {
   ec2_instance_platform = "linux"
   ec2_instances_count = 1
 
+  # Load Balancer Configuration
+  create_alb = true
+
 }
 ```
 

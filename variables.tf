@@ -54,6 +54,12 @@ variable "create_private_sg" {
   default = null
 }
 
+variable "create_alb" {
+    description = "Create option for Application Load Balancer"
+    type = bool
+    default = null
+}
+
 ####################################
 # VPC Variables
 ####################################
@@ -197,5 +203,6 @@ variable "ec2_instance_platform" {
   description = "Enter the EC2 Instance platform. Hint- linux / windows ."
   default = null
 }
+
 
 

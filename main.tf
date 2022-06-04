@@ -303,3 +303,64 @@ resource "aws_instance" "ec2_windows" {
 
 }
 
+
+####################################
+# Application Load Balancer
+####################################
+
+resource "aws_lb" "alb" {
+  name               = "${local.name_conv}-alb"
+  internal           = false
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.public_sg[0].id]
+  subnets            = [aws_subnet.subnet1a[0].id,aws_subnet.subnet2a[0].id]
+
+  count = var.create_alb ? 1:0
+}
+
+resource "aws_lb_target_group" "alb-tgt" {
+  name     = "${local.name_conv}-alb-tgt"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.vpc[0].id
+
+  health_check {
+      enabled = true
+      path = "/"
+      healthy_threshold   = 3
+      interval            = 5
+      port                = "traffic-port"
+      protocol            = "HTTP"
+      timeout             = 4
+      unhealthy_threshold = 2
+  }
+
+  count = var.create_alb ? 1:0
+}
+
+resource "aws_lb_target_group_attachment" "alb-register" {
+  target_group_arn = aws_lb_target_group.alb-tgt[count.index].arn
+  target_id        = "${element(split(",", join(",", aws_instance.ec2_linux.*.id)), count.index)}"
+  port             = 80
+
+  count = var.ec2_instances_count
+}
+
+resource "aws_lb_listener" "alb-lisnr" {
+  load_balancer_arn = aws_lb.alb[count.index].arn
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.alb-tgt[count.index].arn
+  }
+
+  tags = {
+    Name = "${local.name_conv}-alb-lisnr"
+  }
+
+  count = var.ec2_instances_count>1 && var.create_alb ? 1:0
+}
+
+
