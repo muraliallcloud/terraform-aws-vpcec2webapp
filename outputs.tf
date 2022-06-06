@@ -28,12 +28,12 @@ output "private_sg_ports" {
   value = toset([for sg in aws_security_group.private_sg.*.ingress: sg.*.from_port])
 }
 
-output "linux_public_ips" {
-  value = toset([for instance in aws_instance.ec2_linux: "${instance.tags.Name}-${instance.instance_type}-${instance.subnet_id}-${instance.availability_zone}-${instance.public_ip}"])
+output "linux_instance_details" {
+  value = toset([for instance in aws_instance.ec2_linux: "${instance.tags.Name}-${instance.instance_id}-${instance.instance_type}-${instance.subnet_id}-${instance.availability_zone}-${instance.public_ip}"])
 } 
 
-output "windows_public_ips" {
-  value = toset([for instance in aws_instance.ec2_windows: "${instance.tags.Name}-${instance.instance_type}-${instance.subnet_id}-${instance.availability_zone}-${instance.public_ip}"])
+output "windows_instance_details" {
+  value = toset([for instance in aws_instance.ec2_windows: "${instance.tags.Name}-${instance.instance_id}-${instance.instance_type}-${instance.subnet_id}-${instance.availability_zone}-${instance.public_ip}"])
 } 
 
 output "alb_listener_name" {
