@@ -37,9 +37,9 @@ output "windows_public_ips" {
 } 
 
 output "alb_subnets" {
-    value = toset([for alb_info in aws_lb.alb: "${alb_info.name}-toset(${alb_info.subnets})"])
+    value = toset([for alb_info in aws_lb.alb: alb_info.subnets])
 }
 
 output "alb_securitygroups" {
-    value = toset([for alb_info in aws_lb.alb: "${alb_info.name}-toset(${alb_info.security_groups})"])
+    value = toset([for alb_info in aws_lb.alb: alb_info.security_groups])
 }
