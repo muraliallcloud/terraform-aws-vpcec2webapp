@@ -37,7 +37,7 @@ output "windows_public_ips" {
 } 
 
 output "alb_listener_name" {
-    value = aws_lb.alb.dns_name
+    value = aws_lb.alb[0].dns_name
 }
 
 output "alb_targets" {
