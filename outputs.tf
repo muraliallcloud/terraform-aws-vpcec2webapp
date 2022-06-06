@@ -36,6 +36,14 @@ output "windows_public_ips" {
   value = toset([for instance in aws_instance.ec2_windows: "${instance.tags.Name}-${instance.instance_type}-${instance.subnet_id}-${instance.availability_zone}-${instance.public_ip}"])
 } 
 
+output "alb_listener_name" {
+    value = aws_lb.alb.dns_name
+}
+
+output "alb_targets" {
+    value = toset([for alb_info in aws_lb_target_group_attachment.alb-register: alb_info.target_id])
+}
+
 output "alb_subnets" {
     value = toset([for alb_info in aws_lb.alb: alb_info.subnets])
 }
@@ -43,3 +51,4 @@ output "alb_subnets" {
 output "alb_securitygroups" {
     value = toset([for alb_info in aws_lb.alb: alb_info.security_groups])
 }
+
