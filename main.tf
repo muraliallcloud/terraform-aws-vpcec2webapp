@@ -340,7 +340,7 @@ resource "aws_lb_target_group" "alb-tgt" {
 }
 
 resource "aws_lb_target_group_attachment" "alb-register" {
-  target_group_arn = aws_lb_target_group.alb-tgt[count.index].arn
+  target_group_arn = aws_lb_target_group.alb-tgt[0].arn
   target_id        = "${element(split(",", join(",", aws_instance.ec2_linux.*.id)), count.index)}"
   port             = 80
 
