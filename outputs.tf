@@ -37,7 +37,8 @@ output "windows_instance_details" {
 } 
 
 output "alb_listener_name" {
-    value = aws_lb.alb[0].dns_name
+  #value = aws_lb.alb[0].dns_name
+  value = toset([for lb in aws_lb.alb: lb.dns_name])
 }
 
 output "alb_targets" {
