@@ -193,7 +193,7 @@ variable "ec2_instances_count" {
   description = "Number of EC2 Instances to be created. Hint- Should be less than 3."
   default = null
   validation {
-    condition = var.ec2_instances_count <3
+    condition = var.ec2_instances_count <4
     error_message = "The Number of Instances to be created should be less than 3."
 }
 }
